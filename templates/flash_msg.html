@@ -1,0 +1,33 @@
+<div class="p-0">
+    {% with messages = get_flashed_messages(category_filter=["success"]) %}
+    {% if messages %}
+    {%- for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show mb-0" id="flash-alert" role="alert">
+        {{message}}
+        <button aria-label="Close" class="btn-sm btn-close" data-bs-dismiss="alert" type="button"></button>
+    </div>
+    {% endfor -%}
+    {% endif %}
+    {% endwith %}
+
+    {% with messages = get_flashed_messages(category_filter=["danger"]) %}
+    {% if messages %}
+    {%- for message in messages %}
+    <div class="alert alert-danger alert-dismissible fade show" id="flash-alert" role="alert">
+        {{message}}
+        <button aria-label="Close" class="btn-sm btn-close" data-bs-dismiss="alert" type="button"></button>
+    </div>
+    {% endfor -%}
+    {% endif %}
+    {% endwith %}
+</div>
+
+<script>
+  window.setTimeout(function () {
+      $(".alert").fadeTo(500, 0).slideUp(500, function () {
+          $(this).remove();
+      });
+  }, 4000);
+
+
+</script>

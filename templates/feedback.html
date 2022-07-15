@@ -1,0 +1,206 @@
+{% extends 'base_template.html' %}
+{% block title %} Test {% endblock %}
+
+{% block main %}
+
+<style>
+  .required:after {
+  content:" *";
+  color: red;
+}
+</style>
+
+<div class="container-sm">
+  <div class="row">
+    <div class="col pt-5">
+
+      <h1 class="d-flex justify-content-center">अभिप्राय फॉर्म</h1>
+
+      {% include 'flash_msg.html' %}
+
+      <hr>
+      
+      <div class="fs-5">
+        <strong>उद्देश :- </strong>पिंपरी चिंचवड पोलीस दलातर्फे पोलीस आणि जनता यामधील संबंध अधिक सौहार्दाचे आणि निकोप
+        होण्यासाठी पोलीस
+        कर्मचाऱ्यांचे सेवा प्रशिक्षण स्वागत कक्ष आधी सुयोग्य उपक्रम हाती घेण्यात आलेत सदर उपक्रमांची उपयुक्तता चाचणी
+        घेण्यात येत आहे एक सुजाण नागरिक ह्या नात्याने तुमचा निष्पक्ष अभिप्राय अपेक्षित आहे.
+      </div>
+      <hr>
+
+      <form class="needs-validation fw-bold" action="{{url_for('post_feedback')}}" method="POST" novalidate>
+
+        <fieldset class="row mb-3 p-3">
+          <legend class="col col-form-label required">1) आपली तक्रार पोलीस स्टेशनला नोंदविण्यात आली का ?</legend>
+          <div class="col position-relative">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="query_noted_feedback" id="" value="yes" required>
+              <label class="form-check-label" for="">
+                होय
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="query_noted_feedback" id="" value="no" required>
+              <label class="form-check-label" for="">
+                नाही
+              </label>
+              <div class="invalid-tooltip">
+                कृपया योग्य प्रतिसाद द्या
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="row mb-3 p-3">
+          <legend class="col col-form-label required">2) पोलीस कर्मचाऱ्यांची एकंदर वागण्याची पद्धत कशी वाटली ?</legend>
+          <div class="col position-relative">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="behaviour_feedback" id="" value="1" required>
+              <label class="form-check-label" for="">
+                सौहार्दपुर्ण
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="behaviour_feedback" id="" value="2" required>
+              <label class="form-check-label" for="">
+                समजावून सांगण्याची
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="behaviour_feedback" id="" value="3" required>
+              <label class="form-check-label" for="">
+                तटस्थ
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="behaviour_feedback" id="" value="4" required>
+              <label class="form-check-label" for="">
+                अनुत्साही
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="behaviour_feedback" id="" value="5" required>
+              <label class="form-check-label" for="">
+                अरे रावी पूर्ण
+              </label>
+              <div class="invalid-tooltip">
+                कृपया योग्य प्रतिसाद द्या
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+
+        <fieldset class="row mb-3 p-3">
+          <legend class="col col-form-label required">3) तुमच्या तक्रारीचे / शंकेचे निरसन झाले का ?</legend>
+          <div class="col position-relative">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="query_resolved_feedback" id="" value="yes" required>
+              <label class="form-check-label" for="">
+                होय
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="query_resolved_feedback" id="" value="no" required>
+              <label class="form-check-label" for="">
+                नाही
+              </label>
+              <div class="invalid-tooltip">
+                कृपया योग्य प्रतिसाद द्या
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="row mb-3 p-3">
+          <legend class="col col-form-label required">4) तुम्ही पोलीस कर्मचाऱ्यांच्या वर्तनाला आणि सेवाभावाला किती गुण द्याल ?
+          </legend>
+          <div class="col position-relative">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="rating_feedback" id="" value="terrible" required>
+              <label class="form-check-label" for="">
+                अतिशय कमी
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="rating_feedback" id="" value="poor" required>
+              <label class="form-check-label" for="">
+                कमी
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="rating_feedback" id="" value="average" required>
+              <label class="form-check-label" for="">
+                मध्यम
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="rating_feedback" id="" value="good" required>
+              <label class="form-check-label" for="">
+                चांगले
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="rating_feedback" id="" value="excellent" required>
+              <label class="form-check-label" for="">
+                अतिशय चांगले
+              </label>
+              <div class="invalid-tooltip">
+                कृपया योग्य प्रतिसाद द्या
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="row mb-3 p-3">
+          <legend class="col col-form-label">5) तुम्हाला या खेरीज काही अधिक सांगायचे आहे का ?
+          </legend>
+          <div class="col position-relative">
+            <div class="form-check">
+              <textarea class="form-control" name="feedback_suggestion" id=""></textarea>
+              <!-- <div class="invalid-tooltip">
+                कृपया योग्य प्रतिसाद द्या
+              </div> -->
+            </div>
+          </div>
+        </fieldset>
+
+
+
+        <div class="col d-grid justify-content-center mx-auto">
+          <button class="btn btn-primary" type="submit">Submit form</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (() => {
+    'use strict'
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    const forms = document.querySelectorAll('.needs-validation')
+
+    // Loop over them and prevent submission
+    Array.from(forms).forEach(form => {
+      form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+  })()
+</script>
+
+
+{% endblock %}

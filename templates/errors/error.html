@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="{{url_for('static',filename='assets/css/bootstrap.min.css')}}" rel="stylesheet"/>
+
+    <!-- Prevent favicon 404 error -->
+    <link href="data:," rel="icon">
+
+    <title>Errors | Feedback</title>
+</head>
+
+<body>
+<main>
+    <div class="container">
+        <div class="container text-center">
+            {% if res['status_code'] == 404 %}
+            <img alt="404 error svg" height="500"
+                 src="{{url_for('static',filename='images/error_page_not_found.svg')}}" width="500">
+            {% else %}
+            <img alt="error svg" height="500" src="{{url_for('static',filename='images/error_access_denied.svg')}}"
+                 width="500">
+            {% endif %}
+        </div>
+
+        <table class="table table-striped table-hover table-borderless table-sm">
+            <thead>
+            <tr>
+                <th scope="col">Category</th>
+                <th scope="col">Details</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Status Code</td>
+                <td>{{res['status_code']}}</td>
+            </tr>
+            <tr>
+                <td>Error Name</td>
+                <td>{{res['error_name']}}</td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>{{res['error_description']}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<!-- bootstrap.bundle.min.js contains both Popper.js and Bootstrap JS -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+<script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/bootstrap.bundle.min.js') }}"></script>
+
+</body>
+
+</html>
