@@ -28,19 +28,19 @@
       </div>
       <hr>
 
-      <form class="needs-validation fw-bold" action="{{url_for('post_feedback')}}" method="POST" novalidate>
+      <form class="needs-validation fw-bold" action="{{url_for('post_feedback',username=username,record_id=record_id)}}" method="POST" novalidate>
 
         <fieldset class="row mb-3 p-3">
           <legend class="col col-form-label required">1) आपली तक्रार पोलीस स्टेशनला नोंदविण्यात आली का ?</legend>
           <div class="col position-relative">
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="query_noted_feedback" id="" value="yes" required>
+              <input class="form-check-input" type="radio" name="question1" id="" value="होय" required>
               <label class="form-check-label" for="">
                 होय
               </label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="query_noted_feedback" id="" value="no" required>
+              <input class="form-check-input" type="radio" name="question1" id="" value="नाही" required>
               <label class="form-check-label" for="">
                 नाही
               </label>
@@ -55,31 +55,31 @@
           <legend class="col col-form-label required">2) पोलीस कर्मचाऱ्यांची एकंदर वागण्याची पद्धत कशी वाटली ?</legend>
           <div class="col position-relative">
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="behaviour_feedback" id="" value="1" required>
+              <input class="form-check-input" type="radio" name="question2" id="" value="सौहार्दपुर्ण" required>
               <label class="form-check-label" for="">
                 सौहार्दपुर्ण
               </label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="behaviour_feedback" id="" value="2" required>
+              <input class="form-check-input" type="radio" name="question2" id="" value="समजावून सांगण्याची" required>
               <label class="form-check-label" for="">
                 समजावून सांगण्याची
               </label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="behaviour_feedback" id="" value="3" required>
+              <input class="form-check-input" type="radio" name="question2" id="" value="तटस्थ" required>
               <label class="form-check-label" for="">
                 तटस्थ
               </label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="behaviour_feedback" id="" value="4" required>
+              <input class="form-check-input" type="radio" name="question2" id="" value="अनुत्साही" required>
               <label class="form-check-label" for="">
                 अनुत्साही
               </label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="behaviour_feedback" id="" value="5" required>
+              <input class="form-check-input" type="radio" name="question2" id="" value="अरे रावी पूर्ण" required>
               <label class="form-check-label" for="">
                 अरे रावी पूर्ण
               </label>
@@ -95,13 +95,13 @@
           <legend class="col col-form-label required">3) तुमच्या तक्रारीचे / शंकेचे निरसन झाले का ?</legend>
           <div class="col position-relative">
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="query_resolved_feedback" id="" value="yes" required>
+              <input class="form-check-input" type="radio" name="question3" id="" value="होय" required>
               <label class="form-check-label" for="">
                 होय
               </label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="query_resolved_feedback" id="" value="no" required>
+              <input class="form-check-input" type="radio" name="question3" id="" value="नाही" required>
               <label class="form-check-label" for="">
                 नाही
               </label>
@@ -117,31 +117,31 @@
           </legend>
           <div class="col position-relative">
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="rating_feedback" id="" value="terrible" required>
+              <input class="form-check-input" type="radio" name="question4" id="" value="अतिशय कमी" required>
               <label class="form-check-label" for="">
                 अतिशय कमी
               </label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="rating_feedback" id="" value="poor" required>
+              <input class="form-check-input" type="radio" name="question4" id="" value="कमी" required>
               <label class="form-check-label" for="">
                 कमी
               </label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="rating_feedback" id="" value="average" required>
+              <input class="form-check-input" type="radio" name="question4" id="" value="मध्यम" required>
               <label class="form-check-label" for="">
                 मध्यम
               </label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="rating_feedback" id="" value="good" required>
+              <input class="form-check-input" type="radio" name="question4" id="" value="चांगले" required>
               <label class="form-check-label" for="">
                 चांगले
               </label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="rating_feedback" id="" value="excellent" required>
+              <input class="form-check-input" type="radio" name="question4" id="" value="अतिशय चांगले" required>
               <label class="form-check-label" for="">
                 अतिशय चांगले
               </label>
@@ -157,7 +157,7 @@
           </legend>
           <div class="col position-relative">
             <div class="form-check">
-              <textarea class="form-control" name="feedback_suggestion" id=""></textarea>
+              <textarea class="form-control" name="question5" id=""></textarea>
               <!-- <div class="invalid-tooltip">
                 कृपया योग्य प्रतिसाद द्या
               </div> -->
@@ -168,7 +168,7 @@
 
 
         <div class="col d-grid justify-content-center mx-auto">
-          <button class="btn btn-primary" type="submit">Submit form</button>
+          <button class="btn btn-primary" type="submit">आवेदन सादर करा</button>
         </div>
       </form>
 

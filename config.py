@@ -15,3 +15,5 @@ class DefaultConfig(object):
     # Session Secret Key
     SECRET_KEY = os.environ.get('SECRET_KEY')
     SESSION_KEY = os.environ.get('SESSION_KEY')
+
+    SERVICE_ACCOUNT_JSON = os.environ.get('SERVICE_ACCOUNT_JSON')

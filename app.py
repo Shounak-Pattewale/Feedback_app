@@ -1,9 +1,12 @@
 from datetime import datetime
+import os
 
 from flask import Flask, redirect, url_for, render_template, request, session, flash, jsonify
 from werkzeug.exceptions import HTTPException
 
 from services.app_services import Feedback
+from services import db
+
 from config import DefaultConfig
 
 app = Flask(__name__)
@@ -22,39 +25,33 @@ def handle_exception(e):
         }
         return render_template("errors/error.html", res=res), e.code
 
-# HOME PAGE : Feedback form
-@app.get('/')
-def get_feedback():
+# Feedback form
+@app.get('/Record/<string:username>/Uploads/<string:record_id>')
+def get_feedback(username,record_id):
     try:    
-        return render_template("feedback.html")
+        # print("ARGS 1 => ",username,record_id)
+        return render_template("feedback.html",username=username,record_id=record_id)
     except Exception as ex:
         return render_template("errors/exception_error.html", exception=ex)
 
-@app.post('/')
-def post_feedback():
+@app.post('/<string:username>/<string:record_id>')
+def post_feedback(username,record_id):
     try:
         res = request.form
-        response = Feedback.send_feedback(res)
-        print("Form Response == >> ",response)
         try:
-            if response['status_code'] == 200:
+            # print("ARGS 2 => ",username,record_id)
+            if db.Feedback.addData(res,username,record_id):
                 flash("Feedback submitted successfully", "success")
-                return redirect(url_for('get_feedback'))
+                return redirect(url_for('get_feedback',username=username,record_id=record_id))
             else:
                 flash("Something went wrong", "danger")
-                return render_template('/')
+                return redirect(url_for('get_feedback',username=username,record_id=record_id))
         except:
             flash("Something went wrong", "danger")
-            return render_template('/')
+            return redirect(url_for('get_feedback',username=username,record_id=record_id))
     except Exception as ex:
         return render_template("errors/exception_error.html", exception=ex)
 
-# API Test
-@app.post('/test')
-def test():
-    body = request.get_json()
-    print("API BODY == >>",body)
-    return body
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5001, debug=True)
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT',5001)), debug=True)
