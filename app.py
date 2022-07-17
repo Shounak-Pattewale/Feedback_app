@@ -1,4 +1,3 @@
-from datetime import datetime
 import os
 
 from flask import Flask, redirect, url_for, render_template, request, session, flash, jsonify
@@ -26,7 +25,7 @@ def handle_exception(e):
         return render_template("errors/error.html", res=res), e.code
 
 # Feedback form
-@app.get('/Record/<string:username>/Uploads/<string:record_id>')
+@app.get('/Record/<string:username>/Uploads/<string:record_id>/Feedback')
 def get_feedback(username,record_id):
     try:    
         # print("ARGS 1 => ",username,record_id)
@@ -34,7 +33,7 @@ def get_feedback(username,record_id):
     except Exception as ex:
         return render_template("errors/exception_error.html", exception=ex)
 
-@app.post('/<string:username>/<string:record_id>')
+@app.post('/Record/<string:username>/Uploads/<string:record_id>/Feedback')
 def post_feedback(username,record_id):
     try:
         res = request.form
